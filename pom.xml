@@ -41,11 +41,6 @@
             <artifactId>data-access</artifactId>
             <version>${data-access.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.github.technic47</groupId>
-            <artifactId>kafka-service</artifactId>
-            <version>${kafka-service.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
