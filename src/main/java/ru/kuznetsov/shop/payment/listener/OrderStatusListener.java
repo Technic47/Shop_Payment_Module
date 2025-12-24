@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import ru.kuznetsov.shop.payment.service.PaymentsProcessingService;
 import ru.kuznetsov.shop.represent.contract.order.OrderContract;
 import ru.kuznetsov.shop.represent.contract.order.PaymentContract;
 import ru.kuznetsov.shop.represent.dto.order.OrderDto;
@@ -25,6 +26,7 @@ public class OrderStatusListener {
     private final ObjectMapper objectMapper;
     private final OrderContract orderService;
     private final PaymentContract paymentService;
+    private final PaymentsProcessingService paymentsProcessingService;
 
     @KafkaListener(topics = ORDER_STATUS_FORMED_TOPIC, groupId = "${spring.kafka.consumer.group-id}")
     public void processFormedStatus(String updateStatusDto) {
@@ -43,6 +45,8 @@ public class OrderStatusListener {
                             LocalDateTime.now().plusMinutes(EXPIRATION_TIME_MINUTES)
                     )
             );
+
+            paymentsProcessingService.processAwaitPaymentStatus(order.getId());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

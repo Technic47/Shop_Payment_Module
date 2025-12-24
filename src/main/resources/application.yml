@@ -13,5 +13,11 @@ spring:
     consumer:
       group-id: ${MODULE_GROUP_ID}
 
+microservices:
+  baseUrl: ${BASE_URL}
+
+server:
+  port: ${SERVICE_PORT}
+
 receipt:
   expiration-minutes: ${RECEIPT_EXPIRATION_MINUTES}
