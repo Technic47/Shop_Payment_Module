@@ -6,11 +6,11 @@
     <parent>
         <groupId>io.github.technic47</groupId>
         <artifactId>shop-spring-boot-starter</artifactId>
-        <version>1.0.30</version>
+        <version>1.0.33</version>
     </parent>
 
     <artifactId>payment</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Payment_module</name>
     <description>Payment_module</description>
 
@@ -28,6 +28,10 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
@@ -40,6 +44,11 @@
             <groupId>io.github.technic47</groupId>
             <artifactId>data-access</artifactId>
             <version>${data-access.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.technic47</groupId>
+            <artifactId>kafka-service</artifactId>
+            <version>${kafka-service.version}</version>
         </dependency>
 
         <dependency>

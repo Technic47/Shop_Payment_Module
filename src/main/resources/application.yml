@@ -21,3 +21,7 @@ server:
 
 receipt:
   expiration-minutes: ${RECEIPT_EXPIRATION_MINUTES}
+
+message:
+  ttl:
+    seconds: ${MESSAGE_TTL_SECONDS}

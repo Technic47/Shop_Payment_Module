@@ -35,12 +35,12 @@ public class PaymentsProcessingService {
     public OrderStatusDto processAwaitPaymentStatus(Long orderId) {
         OrderStatusDto paymentService = orderStatusService.create(new OrderStatusDto(
                 AWAIT_PAYMENT,
-                "Payment service",
+                null,
                 "Await payment " + LocalDateTime.now(),
                 orderId
         ));
 
-        logger.info("Order: {} is awaiting for payment", orderId);
+        logger.info("Order: {} set status AWAIT_PAYMENT", orderId);
         return paymentService;
     }
 }
