@@ -23,17 +23,17 @@ public class PaymentsProcessingService {
     public OrderStatusDto processPaymentSuccessStatus(Long orderId) {
         OrderStatusDto orderStatusSaved = orderStatusService.create(new OrderStatusDto(
                 READY,
-                "Payment service",
+                null,
                 "Payment received " + LocalDateTime.now(),
                 orderId
         ));
 
-        logger.info("Payment sent successfully received for order: {}", orderId);
+        logger.info("Payment successfully received for order: {}", orderId);
         return orderStatusSaved;
     }
 
     public OrderStatusDto processAwaitPaymentStatus(Long orderId) {
-        OrderStatusDto paymentService = orderStatusService.create(new OrderStatusDto(
+        OrderStatusDto orderStatusDto = orderStatusService.create(new OrderStatusDto(
                 AWAIT_PAYMENT,
                 null,
                 "Await payment " + LocalDateTime.now(),
@@ -41,6 +41,6 @@ public class PaymentsProcessingService {
         ));
 
         logger.info("Order: {} set status AWAIT_PAYMENT", orderId);
-        return paymentService;
+        return orderStatusDto;
     }
 }
