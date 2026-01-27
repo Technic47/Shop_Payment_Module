@@ -41,6 +41,7 @@ public class OrderStatusListener {
         try {
             UpdateOrderDTO dto = objectMapper.readValue(updateStatusDto, UpdateOrderDTO.class);
             Long orderId = dto.getOrderId();
+            logger.info("Sending receipt for orderId: {}", orderId);
 
             if (!messageCache.exists(orderId)) {
                 messageCache.put(orderId);
@@ -59,6 +60,8 @@ public class OrderStatusListener {
                 );
 
                 paymentsProcessingService.processAwaitPaymentStatus(order.getId());
+
+                logger.info("Receipt for orderId: {} is sent", orderId);
             } else {
                 logger.info("Duplicate message for order id {}", orderId);
             }
